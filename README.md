@@ -4,8 +4,8 @@ Clon de la **interfaz de Netflix** desarrollado como práctica de la asignatura 
 
 ## ✨ Características
 
-- 🔐 Pantalla de **login** con imagen de fondo personalizada
-- 🏠 Pantalla principal con catálogo de películas
+- 🏠 Pantalla de inicio con menú de navegación
+- 🎬 Pantalla principal con catálogo de películas
 - 🎞️ Vistas individuales para cada película
 - 🧩 **UserControls** reutilizables para las tarjetas de película
 - 🎨 Diseño inspirado en la UI real de Netflix
@@ -16,7 +16,7 @@ Clon de la **interfaz de Netflix** desarrollado como práctica de la asignatura 
 Netflix.sln
 └── Netflix/
     ├── App.xaml / App.xaml.cs          ← punto de entrada
-    ├── MainWindow.xaml                 ← ventana de login
+    ├── MainWindow.xaml                 ← ventana de inicio (menú principal)
     ├── Principal.xaml                  ← pantalla principal (catálogo)
     ├── UCpelicula1.xaml                ← UserControl tarjeta de película
     ├── pelicula1.xaml / pelicula2.xaml ← vistas de detalle
@@ -39,7 +39,7 @@ Netflix.sln
 - Creación de **UserControls** reutilizables
 - Navegación entre ventanas
 - Gestión de recursos gráficos
-- Patrones de diseño de UI (login → home → detalle)
+- Patrones de diseño de UI (inicio → home → detalle)
 
 ## 🚀 Cómo ejecutar
 

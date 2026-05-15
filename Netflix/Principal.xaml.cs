@@ -24,14 +24,11 @@ namespace Netflix
         {
             InitializeComponent();
             SetVisibility(Visibility.Visible);
-            MEdaredevil.UnloadedBehavior = MediaState.Manual;
-            MEdaredevil.LoadedBehavior = MediaState.Manual;
+            mediaPlayer.UnloadedBehavior = MediaState.Manual;
+            mediaPlayer.LoadedBehavior = MediaState.Manual;
 
-            // string videoStr = Environment.CurrentDirectory + @"\video\Daredevil.mp4";
-            // MEdaredevil.Source = new Uri(Environment.CurrentDirectory + @"\video\Daredevil.mp4", UriKind.RelativeOrAbsolute);
-            string videoStr = Environment.CurrentDirectory + @"\video\Kimetsu Tengen Tanjiro.mp4";
-            MEdaredevil.Source = new Uri(Environment.CurrentDirectory + @"\video\Kimetsu Tengen Tanjiro.mp4", UriKind.RelativeOrAbsolute);
-
+            // Demo: requiere archivo de vídeo local en la ruta \video\ del proyecto.
+            // mediaPlayer.Source = new Uri(Environment.CurrentDirectory + @"\video\Kimetsu Tengen Tanjiro.mp4", UriKind.RelativeOrAbsolute);
         }
 
         public void SetVisibility(Visibility value)
@@ -65,20 +62,20 @@ namespace Netflix
 
         }
 
-        private void playDaredevil(object sender, RoutedEventArgs e)
+        private void playMedia(object sender, RoutedEventArgs e)
         {
            
-            MEdaredevil.Play();
+            mediaPlayer.Play();
         }
 
-        private void stopDaredevil(object sender, RoutedEventArgs e)
+        private void stopMedia(object sender, RoutedEventArgs e)
         {
-            MEdaredevil.Stop();
+            mediaPlayer.Stop();
         }
 
         private void pausarVideo(object sender, RoutedEventArgs e)
         {
-            MEdaredevil.Pause();
+            mediaPlayer.Pause();
         }
     }
 }

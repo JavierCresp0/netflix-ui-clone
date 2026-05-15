@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Netflix"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024">
+        Title="Netflix" Height="768" Width="1024">
     <Grid>
         <Frame x:Name="marco1" Content="" Margin="-10,109,10,0" NavigationUIVisibility="Hidden"/>
-        <Button x:Name="boton2" Content="Pelicula2" HorizontalAlignment="Left" Height="41" Margin="233,45,0,0" VerticalAlignment="Top" Width="71" Click="cargarPelicula2"/>
-        <Button x:Name="boton1" Content="Pelicula1" HorizontalAlignment="Left" Height="40" Margin="137,45,0,0" VerticalAlignment="Top" Width="64" Click="cargarPelicula1"/>
+        <Button x:Name="boton2" Content="Película 2" HorizontalAlignment="Left" Height="41" Margin="233,45,0,0" VerticalAlignment="Top" Width="71" Click="cargarPelicula2"/>
+        <Button x:Name="boton1" Content="Película 1" HorizontalAlignment="Left" Height="40" Margin="137,45,0,0" VerticalAlignment="Top" Width="64" Click="cargarPelicula1"/>
         <Image Margin="942,19,10,678" Source="/login.png" Stretch="Fill"/>
         <Button Content="Button" HorizontalAlignment="Left" Height="55" Margin="942,20,0,0" VerticalAlignment="Top" Width="72" Opacity="0.02" Click="verPrincipal" Cursor="Hand" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>

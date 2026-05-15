@@ -21,9 +21,9 @@
         <Image HorizontalAlignment="Left" Height="370" VerticalAlignment="Top" Width="795" Source="/41268-kimetsu-no-yaiba.jpg" Stretch="Fill" Margin="0,10,0,0"/>
 
         <Rectangle HorizontalAlignment="Left" Height="370" Stroke="Black" VerticalAlignment="Top" Width="795" Fill="White" Opacity="0.5" Margin="0,10,0,0"/>
-        <MediaElement x:Name="MEdaredevil" HorizontalAlignment="Left" Height="309" Margin="158,53,0,0" VerticalAlignment="Top" Width="471" OpacityMask="#FF151313" Volume="{Binding Value, ElementName=slider2}"/>
-        <Button Content="PLAY" HorizontalAlignment="Left" Height="40" Margin="134,323,0,0" VerticalAlignment="Top" Width="134" Click="playDaredevil"/>
-        <Button Content="STOP" HorizontalAlignment="Left" Height="40" Margin="486,323,0,0" VerticalAlignment="Top" Width="134" Click="stopDaredevil"/>
+        <MediaElement x:Name="mediaPlayer" HorizontalAlignment="Left" Height="309" Margin="158,53,0,0" VerticalAlignment="Top" Width="471" OpacityMask="#FF151313" Volume="{Binding Value, ElementName=slider2}"/>
+        <Button Content="PLAY" HorizontalAlignment="Left" Height="40" Margin="134,323,0,0" VerticalAlignment="Top" Width="134" Click="playMedia"/>
+        <Button Content="STOP" HorizontalAlignment="Left" Height="40" Margin="486,323,0,0" VerticalAlignment="Top" Width="134" Click="stopMedia"/>
         <Button Content="PAUSE" HorizontalAlignment="Left" Height="40" Margin="304,323,0,0" VerticalAlignment="Top" Width="156" Click="pausarVideo"/>
         <Slider x:Name="slider2" HorizontalAlignment="Left" Height="100" Margin="676,215,0,0" VerticalAlignment="Top" Width="27" Maximum="1" Value="0.5" Orientation="Vertical"/>
 
