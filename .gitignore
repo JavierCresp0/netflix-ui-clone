@@ -1,0 +1,23 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+*.suo
+*.user
+*.userprefs
+*.pdb
+*.cache
+packages/
+*.lock.json
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+
+# OS
+Thumbs.db
+.DS_Store
