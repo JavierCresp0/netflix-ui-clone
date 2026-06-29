@@ -48,14 +48,6 @@ namespace Netflix
             }));
         }
 
-       public Frame Getcontenedor()
-        {
-
-            Frame frame = null;
-            return frame;
-        }
-
-
         private void verPelicula1(object sender, RoutedEventArgs e)
         {
             SetVisibility(Visibility.Visible);
