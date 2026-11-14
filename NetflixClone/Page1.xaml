@@ -1,0 +1,234 @@
+﻿<Page x:Class="Practica_2.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Practica_2"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page1">
+    <Page.Resources>
+        <Storyboard x:Key="StoryMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="809.812"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="3.285"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoryMenuInv">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoryMenuInv2">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid  x:Name="MainGrid" Height="404.039907834101">
+        <!-- Recursos del estilo para la animación -->
+        <Grid.Resources>
+            <Style TargetType="Button" x:Key="AnimatedButtonStyle">
+                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                             To="1.2" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                             To="1.2" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                             To="1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                             To="1" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="MediaControlButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#333333"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Height" Value="60"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <!-- Fondo redondeado -->
+                                <Border x:Name="Border" CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image x:Name="Icon" Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}" Height="24" Width="24" Margin="0,0,10,0"/>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <!-- Efecto al pasar el mouse -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#FF5722"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <!-- Efecto al presionar el botón -->
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#E64A19"/>
+                                    <Setter TargetName="Icon" Property="Opacity" Value="0.8"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </Grid.Resources>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Fondo.jpg"/>
+        </Grid.Background>
+
+        <Button x:Name="ImageButton6" HorizontalAlignment="Left" Height="48" Width="67" Margin="46,26,0,0" VerticalAlignment="Top" Click="Click"
+                BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
+            <Image Source="/menu 2.png" Stretch="Fill" Height="50" Width="70"/>
+        </Button>
+
+        <Button x:Name="Dune" HorizontalAlignment="Left" Height="110" Width="198" 
+         Margin="63,162,0,0" VerticalAlignment="Top" 
+         Click="show" BorderBrush="{x:Null}" Background="{x:Null}" 
+         Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
+            <Image Source="/Dune2.jpg" Stretch="Fill" Height="110" Width="198"/>
+        </Button>
+
+        <Button x:Name="Arcane" HorizontalAlignment="Center" Height="110" Width="198" 
+            Margin="0,162,0,0" VerticalAlignment="Top" 
+            Click="show2" BorderBrush="{x:Null}" Background="{x:Null}" 
+            Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
+            <Image Source="/arcane.jpg" Stretch="Fill" Height="110" Width="198"/>
+        </Button>
+
+        <Button x:Name="Gladiator" HorizontalAlignment="Left" Height="110" Width="198" 
+            Margin="536,159,0,0" VerticalAlignment="Top" 
+            Click="show3" BorderBrush="{x:Null}" Background="{x:Null}" 
+            Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
+            <Image Source="/gladiator.jpg" Stretch="Fill" Height="110" Width="198"/>
+        </Button>
+
+        <Grid x:Name="grid" Margin="-811,-2,811,2" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid Margin="0,0,608,0">
+                <Image Margin="4,0,0,0" Source="/Image10.png" Stretch="Fill"/>
+                <Image Margin="0,40,0,330" Source="/Name logo.png" Stretch="Fill"/>
+                <TextBlock HorizontalAlignment="Left" Height="241" Margin="4,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Foreground="White" FontSize="14" RenderTransformOrigin="0.5,0.5" Text="Dato curioso: Hans Zimmer fue el responsable de componer la magnifica banda sonora de Dune y Gladiator entre otros grandes éxitos como el Rey León">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.477"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.392"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform></TextBlock>
+
+            </Grid>
+            <Button HorizontalAlignment="Left" 
+        Height="450" 
+        Margin="172,0,0,0" 
+        VerticalAlignment="Center" 
+        Width="628" 
+        Cursor="Hand" 
+        Click="Click2">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF898383"/>
+                        <Setter Property="Opacity" Value="0.3"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </Grid>
+        <Image Margin="294,26,294,314" Source="/R.png" Stretch="Fill"/>
+
+        <!-- Dune2 -->
+        <Button x:Name="play" Content="Play" Tag="/play_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="playDaredevil" HorizontalAlignment="Left" Margin="225,332,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="pause" Content="Pause" Tag="/pause_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="pausarVideo" HorizontalAlignment="Left" Margin="407,334,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="stop" Content="Stop" Tag="/stop_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="stopDaredevil" HorizontalAlignment="Left" Margin="597,332,0,0" VerticalAlignment="Top"/>
+        <MediaElement x:Name="MEdaredevil" HorizontalAlignment="Left" Height="327" VerticalAlignment="Top" Width="796"/>
+
+        <!-- Arcane -->
+        <MediaElement x:Name="MEdaredevil2" HorizontalAlignment="Left" Height="333" VerticalAlignment="Top" Width="803" d:IsLocked="True"/>
+        <Button x:Name="play2" Content="Play" Tag="/play_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="playDaredevil2" HorizontalAlignment="Left" Margin="225,337,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="pause2" Content="Pause" Tag="/pause_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="pausarVideo2" HorizontalAlignment="Left" Margin="407,338,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="stop2" Content="Stop" Tag="/stop_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="stopDaredevil2" HorizontalAlignment="Left" Margin="597,337,0,0" VerticalAlignment="Top"/>
+
+        <!-- Gladiator -->
+        <MediaElement x:Name="MEdaredevil3" HorizontalAlignment="Left" Height="333" VerticalAlignment="Top" Width="696" Margin="125,0,0,0"/>
+        <Button x:Name="play3" Content="Play" Tag="/play_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="playDaredevil3" HorizontalAlignment="Left" Margin="225,337,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="pause3" Content="Pause" Tag="/pause_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="pausarVideo3" HorizontalAlignment="Left" Margin="407,338,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="stop3" Content="Stop" Tag="/stop_icon.png" Style="{StaticResource MediaControlButtonStyle}" Click="stopDaredevil3" HorizontalAlignment="Left" Margin="597,337,0,0" VerticalAlignment="Top"/>
+
+
+        <!-- Botones con animación -->
+
+        <!-- Barras de Audio -->
+        <Slider x:Name="VolumeSlider" Minimum="0" Maximum="1" Value="{Binding ElementName=MEdaredevil, Path=Volume}"
+        Orientation="Horizontal" Width="200" Height="30"
+        HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="572,0,0,67" />
+
+        <Slider x:Name="VolumeSlider2" Minimum="0" Maximum="1" Value="{Binding ElementName=MEdaredevil2, Path=Volume}"
+        Orientation="Horizontal" Width="200" Height="30"
+        HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="572,0,0,67" />
+
+        <Slider x:Name="VolumeSlider3" Minimum="0" Maximum="1" Value="{Binding ElementName=MEdaredevil3, Path=Volume}"
+        Orientation="Horizontal" Width="200" Height="30"
+        HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="572,0,0,67" />
+
+
+
+
+
+
+    </Grid>
+</Page>

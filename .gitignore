@@ -21,3 +21,7 @@ bld/
 # OS
 Thumbs.db
 .DS_Store
+
+# Vídeos de prueba (no se versionan)
+*.mp4
+Videos/
