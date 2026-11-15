@@ -5,208 +5,90 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practica_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Netflix" Height="450" Width="800"
+        Background="{StaticResource FondoBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Window.Resources>
         <Storyboard x:Key="StoryMenu1"/>
         <Storyboard x:Key="StoryMenuInv1"/>
     </Window.Resources>
-    <Grid>
-        <!-- Recursos del estilo para la animación -->
-        <Grid.Resources>
-            <Style TargetType="{x:Type Button}" x:Key="AnimatedButtonStyle">
-                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-                <Setter Property="RenderTransform">
-                    <Setter.Value>
-                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Trigger.EnterActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
-                                                     To="1.2" Duration="0:0:0.2"/>
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
-                                                     To="1.2" Duration="0:0:0.2"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </Trigger.EnterActions>
-                        <Trigger.ExitActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
-                                                     To="1" Duration="0:0:0.2"/>
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
-                                                     To="1" Duration="0:0:0.2"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </Trigger.ExitActions>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
+    <Grid Background="{StaticResource FondoBrush}">
 
-            <!-- Segundo Recursos del estilo para la animación -->
+        <!-- Botón "Volver" del reproductor. Queda bajo el Frame: solo se ve y se puede
+             pulsar cuando la página deja su fondo transparente al reproducir un vídeo. -->
+        <Button x:Name="BReturn" Content="Volver" Tag="&#xE72B;" Style="{StaticResource MediaControlButtonStyle}" Click="Click"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="24,0,0,14"/>
 
-            <Style x:Key="MediaControlButtonStyle" TargetType="{x:Type Button}">
-                <!-- Propiedades principales -->
-                <Setter Property="Background" Value="#333333"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="Height" Value="60"/>
-                <Setter Property="Width" Value="150"/>
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="FontSize" Value="16"/>
-                <!-- Desactiva el estilo visual de foco -->
-                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                <!-- Plantilla personalizada -->
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Grid>
-                                <!-- Fondo redondeado sin bordes adicionales -->
-                                <Border x:Name="Border" CornerRadius="20" 
-                            Background="{TemplateBinding Background}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="0">
-                                    <!-- Aquí se elimina el borde -->
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <!-- Icono del botón -->
-                                        <Image x:Name="Icon" Source="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
-                                   Height="24" Width="24" Margin="0,0,10,0"/>
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <!-- Efecto al pasar el mouse -->
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="#FF5722"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Trigger>
-                                <!-- Efecto al presionar el botón -->
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="#E64A19"/>
-                                    <Setter TargetName="Icon" Property="Opacity" Value="0.8"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+        <!-- Contenedor de navegación: aquí se carga el catálogo (Page1) -->
+        <Frame x:Name="ejemplo" Margin="0,0,0,1" d:IsLocked="True"/>
 
-            <!-- Estilo del botón circular -->
-            <Style TargetType="{x:Type Button}" x:Key="CircularButtonStyle">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Grid>
-                                <!-- Forma circular con relleno clicable -->
-                                <Ellipse x:Name="EllipseBackground" 
-                             Fill="{TemplateBinding Background}" 
-                             Stroke="Transparent" 
-                             StrokeThickness="2" />
-                                <!-- Imagen dentro del botón -->
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <!-- Efecto al pasar el ratón -->
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="EllipseBackground" Property="Stroke" Value="#FF5722" />
-                                    <Setter TargetName="EllipseBackground" Property="StrokeThickness" Value="2" />
-                                </Trigger>
-                                <!-- Efecto al presionar el botón -->
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="EllipseBackground" Property="Opacity" Value="0.7" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <!-- Valores predeterminados del botón circular -->
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="Height" Value="113"/>
-                <Setter Property="Width" Value="113"/>
-            </Style>
-        </Grid.Resources>
+        <!-- ===== Selección de perfil ===== -->
+        <Image Source="/Name logo.png" Height="26" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,20,0,0"
+               Visibility="{Binding Visibility, ElementName=texto1}"/>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="433*"/>
-        </Grid.RowDefinitions>
+        <TextBlock x:Name="texto1" Text="¿Quién está viendo ahora?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,74,0,0"
+                   Foreground="White" FontSize="34" FontWeight="SemiBold"/>
 
-        <Grid.Background>
-            <ImageBrush ImageSource="/Fondo.jpg"/>
-        </Grid.Background>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,150,0,0">
 
-        <!-- Título -->
-        <TextBlock x:Name="texto1" HorizontalAlignment="Center" Height="73" Margin="0,57,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="564" 
-                   Foreground="White" FontSize="48" Grid.Row="1"><Run Language="es-es" Text="¿Quién está viendo ahora?"/></TextBlock>
+            <StackPanel Margin="16,0">
+                <Button x:Name="ImageButton" Click="Click" Style="{StaticResource TarjetaButtonStyle}">
+                    <Border Width="108" Height="108" CornerRadius="5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Silco.png" Stretch="UniformToFill"/>
+                        </Border.Background>
+                    </Border>
+                </Button>
+                <TextBlock x:Name="texto2" Text="Eloy" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="{StaticResource TextoSuaveBrush}" FontSize="15"/>
+            </StackPanel>
 
-        <!-- Nombres -->
-        <TextBlock x:Name="texto2" HorizontalAlignment="Left" Height="46" Margin="148,278,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="31" 
-                   Foreground="#FF807171" FontSize="16" Grid.Row="1"><Run Language="es-es" Text="Eloy"/></TextBlock>
-        <TextBlock x:Name="texto3" HorizontalAlignment="Left" Height="46" Margin="312,278,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="46" 
-                   Foreground="#FF807171" FontSize="16" Grid.Row="1"><Run Language="es-es" Text="María"/></TextBlock>
-        <TextBlock x:Name="texto4" HorizontalAlignment="Left" Height="46" Margin="471,278,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="46" 
-                   Foreground="#FF807171" FontSize="16" Grid.Row="1"><Run Language="es-es" Text="José"/></TextBlock>
-        <TextBlock x:Name="texto5" HorizontalAlignment="Left" Height="46" Margin="640,278,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top" Width="46" 
-                   Foreground="#FF807171" FontSize="16" Grid.Row="1"><Run Language="es-es" Text="Victor"/></TextBlock>
-        <Button x:Name="BReturn" Content="return" Tag="/return.png" Style="{StaticResource MediaControlButtonStyle}" Click="Click" HorizontalAlignment="Left" Margin="49,340,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Frame x:Name="ejemplo" Margin="0,0,0,1" Grid.RowSpan="2" d:IsLocked="True" />
+            <StackPanel Margin="16,0">
+                <Button x:Name="ImageButton2" Click="Click" Style="{StaticResource TarjetaButtonStyle}">
+                    <Border Width="108" Height="108" CornerRadius="5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Image3.png" Stretch="UniformToFill"/>
+                        </Border.Background>
+                    </Border>
+                </Button>
+                <TextBlock x:Name="texto3" Text="María" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="{StaticResource TextoSuaveBrush}" FontSize="15"/>
+            </StackPanel>
 
-        <!-- Frame limpio sin contenido inicial -->
+            <StackPanel Margin="16,0">
+                <Button x:Name="ImageButton3" Click="Click" Style="{StaticResource TarjetaButtonStyle}">
+                    <Border Width="108" Height="108" CornerRadius="5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Image5.png" Stretch="UniformToFill"/>
+                        </Border.Background>
+                    </Border>
+                </Button>
+                <TextBlock x:Name="texto4" Text="José" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="{StaticResource TextoSuaveBrush}" FontSize="15"/>
+            </StackPanel>
 
-        <!-- Botones con animación -->
-        <Button x:Name="ImageButton" HorizontalAlignment="Left" Height="115" Width="115" 
-                Margin="104,0,0,0" VerticalAlignment="Center" Grid.Row="1" 
-                Click="Click" BorderBrush="{x:Null}" Background="{x:Null}" 
-                Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
-            <Image Source="/Silco.png" Stretch="Fill" Height="113" Width="113"/>
-        </Button>
+            <StackPanel Margin="16,0">
+                <Button x:Name="ImageButton4" Click="Click" Style="{StaticResource TarjetaButtonStyle}">
+                    <Border Width="108" Height="108" CornerRadius="5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Image4.png" Stretch="UniformToFill"/>
+                        </Border.Background>
+                    </Border>
+                </Button>
+                <TextBlock x:Name="texto5" Text="Víctor" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="{StaticResource TextoSuaveBrush}" FontSize="15"/>
+            </StackPanel>
 
+        </StackPanel>
 
-        <Button x:Name="ImageButton3" HorizontalAlignment="Left" Height="115" Width="115" 
-                Margin="436,0,0,0" VerticalAlignment="Center" Grid.Row="1" 
-                Click="Click" BorderBrush="{x:Null}" Background="{x:Null}" 
-                Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
-            <Image Source="/Image5.png" Stretch="Fill" Height="113" Width="113"/>
-        </Button>
+        <Button x:Name="Cerrar" Content="Cerrar sesión" Style="{StaticResource ContornoButtonStyle}" Width="170" Height="34"
+                HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,334,0,0" Click="CircularButton_Click"/>
 
-
-        <Button x:Name="ImageButton4" HorizontalAlignment="Left" Height="115" Width="115" 
-                Margin="606,0,0,0" VerticalAlignment="Center" Grid.Row="1" 
-                Click="Click" BorderBrush="{x:Null}" Background="{x:Null}" 
-                Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
-            <Image Source="/Image4.png" Stretch="Fill" Height="113" Width="113"/>
-        </Button>
-
-        <Button x:Name="ImageButton2" HorizontalAlignment="Left" Height="115" Width="115" 
-                Margin="270,0,0,0" VerticalAlignment="Center" Grid.Row="1" 
-                Click="Click" BorderBrush="{x:Null}" Background="{x:Null}" 
-                Foreground="{x:Null}" Style="{StaticResource AnimatedButtonStyle}">
-            <Image Source="/Image3.png" Stretch="Fill" Height="113" Width="113"/>
-        </Button>
-
-
-
-        <!-- Barra emergente -->
-        <Popup x:Name="OptionsPopup" Placement="Center" IsOpen="False" StaysOpen="False">
-            <Border Background="#333333" CornerRadius="10" Padding="10" Width="200" Height="100">
+        <!-- Confirmación de cierre de sesión -->
+        <Popup x:Name="OptionsPopup" Placement="Center" IsOpen="False" StaysOpen="False" AllowsTransparency="True">
+            <Border Background="{StaticResource SuperficieBrush}" BorderBrush="#3A3A3A" BorderThickness="1" CornerRadius="8" Padding="20,18" Width="250">
                 <StackPanel>
-                    <Button Content="Cerrar sesión" Click="OpenWindow_Click" Margin="0,5,0,5"/>
-                    <Button Content="Cerrar barra" Click="ClosePopup_Click"/>
+                    <TextBlock Text="¿Cerrar la sesión?" Foreground="White" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,14"/>
+                    <Button Content="Cerrar sesión" Style="{StaticResource AccionButtonStyle}" Click="OpenWindow_Click" Height="34" Margin="0,0,0,8"/>
+                    <Button Content="Cancelar" Style="{StaticResource ContornoButtonStyle}" Click="ClosePopup_Click" Height="34"/>
                 </StackPanel>
             </Border>
         </Popup>
-        <Button x:Name="Cerrar" Content="Cerrar sesión" HorizontalAlignment="Center" Height="30" Margin="0,345,0,0" Grid.Row="1" VerticalAlignment="Top" Width="221" Foreground="#FF807171" Background="{x:Null}" BorderBrush="#FFD4D4D4" Click="CircularButton_Click" Style="{StaticResource AnimatedButtonStyle}"/>
 
     </Grid>
 </Window>

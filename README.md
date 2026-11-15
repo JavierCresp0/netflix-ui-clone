@@ -20,17 +20,18 @@ Aplicación de escritorio inspirada en **Netflix**, desarrollada como **Práctic
 
 - 🔐 **Inicio de sesión** con validación de campos vacíos y de credenciales (usuario de demostración: `Eloy` / `1234`)
 - 👥 **Selección de perfil** ("¿Quién está viendo ahora?") con animación de escala al pasar el ratón
-- 🎞️ **Catálogo** de títulos; al elegir uno se abre su reproductor
-- ▶️ **Reproductor** con `MediaElement`: Play, Pause, Stop y control de **volumen** enlazado por *data binding*
-- 📂 **Menú lateral deslizante** animado con `Storyboard`
-- 🎨 **Estilos y plantillas propias**: botones redondeados con icono (`ControlTemplate` + `Tag`), botón circular y `Triggers` para los estados *hover* y *pressed*
+- 🎞️ **Catálogo** con título destacado y fila de carátulas; al elegir una se abre su reproductor
+- ▶️ **Reproductor** con `MediaElement`: Play, Pausa, Stop y control de **volumen** enlazado por *data binding*
+- 📂 **Menú lateral deslizante** animado con `Storyboard`, con acceso directo a cada título
+- 🎨 **Estilos y plantillas propias** centralizados en `App.xaml`: tarjetas con zoom, botones con icono (`ControlTemplate` + `Tag`), campos de texto y control de volumen, con `Triggers` para los estados *hover*, *pressed* y foco
+- 🔁 **Cambio de modo solo con XAML**: el catálogo y el reproductor se alternan mediante *bindings* y `DataTrigger` sobre la visibilidad, sin lógica adicional en C#
 
 ## 📁 Estructura del proyecto
 
 ```
 NetflixClone.sln
 NetflixClone/
-├── App.xaml                 ← punto de entrada (abre MainWindow)
+├── App.xaml                 ← punto de entrada, paleta y estilos compartidos
 ├── log.xaml / .cs           ← ventana de inicio de sesión
 ├── MainWindow.xaml / .cs    ← selección de perfil y contenedor (Frame) de navegación
 ├── Page1.xaml / .cs         ← catálogo, menú lateral y reproductores

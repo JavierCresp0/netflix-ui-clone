@@ -5,26 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practica_2"
         mc:Ignorable="d"
-        Title="log" Height="450" Width="800">
+        Title="Netflix · Iniciar sesión" Height="450" Width="800"
+        Background="{StaticResource FondoBrush}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
+        <!-- Fondo: degradado oscuro con un resplandor rojo muy suave -->
         <Grid.Background>
-            <ImageBrush ImageSource="/Fondo.jpg"/>
+            <RadialGradientBrush Center="0.5,0.45" GradientOrigin="0.5,0.45" RadiusX="0.75" RadiusY="0.9">
+                <GradientStop Color="#3A0A0D" Offset="0"/>
+                <GradientStop Color="#141414" Offset="1"/>
+            </RadialGradientBrush>
         </Grid.Background>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <Rectangle HorizontalAlignment="Left" Height="281" Stroke="Black" VerticalAlignment="Center" Width="273">
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="Black" Opacity="0.5"/>
-                </Rectangle.Fill>
-            </Rectangle>
+        <Image Source="/Name logo.png" Height="30" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,22,0,0"/>
 
-            <TextBlock HorizontalAlignment="Left" Height="50" Margin="29,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" Foreground="White" FontSize="30"><Run Language="es-es" Text="Sign In"/><LineBreak/><Run Language="es-es"/><Run Text="n"/><LineBreak/><Run/></TextBlock>
-            
-            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Center" Height="32" Margin="0,133,0,0" VerticalAlignment="Top" Width="215" Background="#FF362E2E" Foreground="White" BorderBrush="{x:Null}"/>
-            <Button Content="Sign In" HorizontalAlignment="Center" Height="32" Margin="0,197,0,0" VerticalAlignment="Top" Width="215" Background="#FF920000" Foreground="White" Click="IdentificarUser" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="txtUsuario" HorizontalAlignment="Center" Height="32" Margin="0,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" Background="#FF362E2E" BorderBrush="{x:Null}" Foreground="White"/>
-        </Grid>
-        <Image Margin="10,10,614,371" Source="/R.png" Stretch="Fill"/>
+        <!-- Tarjeta de inicio de sesión -->
+        <Border Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="8" Background="#CC000000" Padding="32,26,32,28" Margin="0,24,0,0">
+            <StackPanel>
+                <TextBlock Text="Iniciar sesión" Foreground="White" FontSize="26" FontWeight="SemiBold" Margin="0,0,0,18"/>
 
+                <TextBlock Text="Usuario" Foreground="{StaticResource TextoSuaveBrush}" FontSize="12" Margin="2,0,0,5"/>
+                <TextBox x:Name="txtUsuario" Style="{StaticResource CampoTextoStyle}" TextWrapping="NoWrap"/>
+
+                <TextBlock Text="Contraseña" Foreground="{StaticResource TextoSuaveBrush}" FontSize="12" Margin="2,14,0,5"/>
+                <PasswordBox x:Name="txtPassword" Style="{StaticResource CampoClaveStyle}"/>
+
+                <Button Content="Iniciar sesión" Style="{StaticResource AccionButtonStyle}" Height="40" Margin="0,24,0,0" Click="IdentificarUser" IsDefault="True"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
